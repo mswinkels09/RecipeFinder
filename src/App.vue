@@ -1,28 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" class="font-weight-bold" dark>
+      RECIPE FINDER
+    </v-app-bar>
+    <v-main>
+      <v-row class="justify-center mt-5">
+        <KeyIngredients />
+      </v-row>
+      <v-row class="justify-center mt-7">
+        <MealType />
+      </v-row>
+      <v-row class="justify-center mt-10">
+        <v-btn color="primary" @click="getRandomRecipes">Find recipes</v-btn>
+      </v-row>
+      <v-row class="justify-space-around ma-10">
+        <RecipeResults />
+      </v-row>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import { mapActions } from "vuex";
+import RecipeResults from "./components/RecipeResults.vue";
+import KeyIngredients from "./components/KeyIngredients";
+import  MealType  from "./components/MealType";
 
 export default {
-  name: "App",
   components: {
-    HelloWorld,
+    RecipeResults,
+    KeyIngredients,
+    MealType,
   },
+  methods: {
+    ...mapActions(["getRandomRecipes"])
+  }
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
